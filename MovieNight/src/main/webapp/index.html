@@ -6,5 +6,89 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+
+        <h3>Register api</h3>
+        <input type="text" id="token">
+        <br>
+        <input type="button" onclick="passToken()" value="Send">
+        <hr>
+        <h3>Create Event api</h3>
+        <input type="text" id="userid" placeholder="userid"><br>
+        <input type="text" id="posterimg" placeholder="poster Image"><br>
+        <input type="text" id="moviename" placeholder="Movie Name"><br>
+        <input type="datetime" id="datetime" placeholder="datetime"><br>
+        <input type="text" id="rating" placeholder="Rating"><br>
+        <input type="text" id="invity1" placeholder="invity 1"><br>
+        <input type="text" id="invity2" placeholder="invity 2"><br>
+        <input type="text" id="msg" placeholder="message"><br>
+        <input type="button" onclick="eventCreation()" value="SendData">
+
+        <script src="./scripts/jquery.min.js"></script>
+        <script>
+            function passToken() {
+                var idtoken = document.getElementById("token").value;
+                var serverUrl = document.location.origin + "/MovieNight/api/register/idToken";
+                console.log(serverUrl);
+                var data = {
+                    jwtToken: idtoken
+                }
+                console.log(data);
+                $.ajax({
+                    url: serverUrl,
+                    type: 'post',
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8",
+                    headers: {
+                    },
+                    complete: function (response) {
+                        console.log(response);
+                        if (response.status === 200) {
+                            console.log(response.responseText);
+                        } else {
+                            console.log(response.responseText);
+                        }
+                    }
+                });
+            }
+            function eventCreation() {
+                var userid = document.getElementById("userid").value;
+                var posterimg = document.getElementById("posterimg").value;
+                var moviename = document.getElementById("moviename").value;
+                var datetime = document.getElementById("datetime").value;
+                var rating = document.getElementById("rating").value;
+                var invity1 = document.getElementById("invity1").value;
+                var invity2 = document.getElementById("invity2").value;
+                var msg = document.getElementById("msg").value;
+                var invities = {invity1, invity2};
+                var serverUrl = document.location.origin + "/MovieNight/api/event/createEvent";
+                var dataCreate = {
+                    userid: userid,
+                    posterImg: posterimg,
+                    movieName: moviename,
+                    dateTime: datetime,
+                    rating: rating,
+//                    invities: invities,
+                    message: msg
+                }
+                console.log(serverUrl);
+                console.log(dataCreate);
+                $.ajax({
+                    url: serverUrl,
+                    type: 'post',
+                    data: JSON.stringify(dataCreate),
+                    contentType: "application/json; charset=utf-8",
+                    headers: {
+                    },
+                    complete: function (response) {
+                        console.log(response);
+                        if (response.status === 200) {
+                            console.log(response.responseText);
+                        } else {
+                            console.log(response.responseText);
+                        }
+                    }
+                });
+            }
+        </script>
     </body>
 </html>
