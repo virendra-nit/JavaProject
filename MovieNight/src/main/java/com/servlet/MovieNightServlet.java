@@ -45,7 +45,7 @@ public class MovieNightServlet extends ServletContainer {
             log(LOG_TAG + "Firebase initialized successfully", Constants.LOGGER_TYPE_INFO);
         } catch (Exception ex) {
             logException(ex);
-            Logger.getLogger(MovieNightServlet.class.getName()).log(Level.ERROR,ex);
+            Logger.getLogger(MovieNightServlet.class.getName()).log(Level.toLevel("SEREVER"),ex);
         }
     }
 
