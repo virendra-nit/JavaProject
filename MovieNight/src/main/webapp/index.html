@@ -23,11 +23,12 @@
         <input type="text" id="msg" placeholder="message"><br>
         <input type="button" onclick="eventCreation()" value="SendData">
 
-        <script src="./scripts/jquery.min.js"></script>
+        <!--<script src="./scripts/jquery.min.js"></script>-->  
+
         <script>
             function passToken() {
                 var idtoken = document.getElementById("token").value;
-                var serverUrl = document.location.origin + "/MovieNight/api/register/idToken";
+                var serverUrl = document.location.origin + "/MovieNight/api/register/idToken";  //  /MovieNight
                 console.log(serverUrl);
                 var data = {
                     jwtToken: idtoken
@@ -59,7 +60,7 @@
                 var invity1 = document.getElementById("invity1").value;
                 var invity2 = document.getElementById("invity2").value;
                 var msg = document.getElementById("msg").value;
-                var invities = {invity1, invity2};
+//                var invities = {invity1, invity2};
                 var serverUrl = document.location.origin + "/MovieNight/api/event/createEvent";
                 var dataCreate = {
                     userid: userid,

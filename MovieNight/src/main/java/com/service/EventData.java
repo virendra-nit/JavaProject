@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.service;
 
 import com.database.EventCreation;
@@ -70,15 +65,19 @@ public class EventData {
             MovieNightServlet.logException(e);
             return Response.status(Response.Status.EXPECTATION_FAILED).entity("error" + e).build();
         }
+//        Query first =  db.collection("Events").document("users").collection("EventsList")
+////                .orderBy("population")
+//                .limit(25);
+       
     }
 
     @GET
-    @Path("/id/{id}")
+    @Path("/eventid/{eventid}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getById(@PathParam("id") String id) {
+    public Response getById(@PathParam("eventid") String eventid) {
         Firestore db = FirestoreClient.getFirestore();
         JSONObject object = new JSONObject();
-        DocumentReference docRef = db.collection("Events").document("userid2").collection("eventsCollection").document(id);
+        DocumentReference docRef = db.collection("Events").document("users").collection("EventsList").document(eventid);
         ApiFuture<DocumentSnapshot> future = docRef.get();
         try {
             DocumentSnapshot document = future.get();
